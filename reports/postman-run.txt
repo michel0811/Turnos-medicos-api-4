@@ -1,0 +1,491 @@
+(node:13248) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+newman
+
+TurnosMed API
+
+→ 01 Crear médico
+  POST http://127.0.0.1:56724/medicos [201 Created, 405B, 109ms]
+  √  Estado 201
+  √  Contrato JSON
+
+→ 02 Consultar médico
+  GET http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [200 OK, 343B, 9ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  ID creado
+
+→ 03 Listar médicos
+  GET http://127.0.0.1:56724/medicos [200 OK, 4.17kB, 5ms]
+  √  Estado 200
+  √  Contrato JSON
+
+→ 04 Filtrar médicos sin tilde
+  GET http://127.0.0.1:56724/medicos?especialidad=Pediatria&disponible=true [200 OK, 592B, 5ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  Filtro combinado
+
+→ 05 Actualizar médico
+  PUT http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [200 OK, 345B, 7ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  Nombre actualizado
+
+→ 06 Especialidad inválida
+  POST http://127.0.0.1:56724/medicos [400 Bad Request, 456B, 6ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 07 Booleano incorrecto
+  POST http://127.0.0.1:56724/medicos [400 Bad Request, 437B, 8ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 08 PUT exige todos los campos
+  PUT http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [400 Bad Request, 551B, 6ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 09 Filtro booleano inválido
+  GET http://127.0.0.1:56724/medicos?disponible=quizas [400 Bad Request, 440B, 6ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 10 Médico inexistente
+  GET http://127.0.0.1:56724/medicos/00000000-0000-4000-8000-000000000000 [404 Not Found, 306B, 4ms]
+  √  Estado 404
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 11 ID mal formado
+  GET http://127.0.0.1:56724/medicos/no-es-uuid [400 Bad Request, 395B, 4ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 12 Crear turno
+  POST http://127.0.0.1:56724/turnos [201 Created, 495B, 5ms]
+  √  Estado 201
+  √  Contrato JSON
+  √  Relación con médico
+
+→ 13 Consultar turno
+  GET http://127.0.0.1:56724/turnos/d5fb33b1-30df-4552-9ac9-695f9eb3e611 [200 OK, 434B, 3ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  Documento conserva formato
+
+→ 14 Listar turnos
+  GET http://127.0.0.1:56724/turnos [200 OK, 436B, 4ms]
+  √  Estado 200
+  √  Contrato JSON
+
+→ 15 Filtros combinados de turnos
+  GET http://127.0.0.1:56724/turnos?especialidad=Pediatria&fecha=05/01/2026&medicoId=241ac3e4-d506-4932-931b-6cdacc1a0eba [200 OK, 436B, 7ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  Filtros vinculados
+
+→ 16 Documento numérico rechazado
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 435B, 6ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 17 Paciente obligatorio
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 437B, 3ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 18 Fecha imposible
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 430B, 4ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+  √  Campo inválido identificado
+
+→ 19 Médico referenciado inexistente
+  POST http://127.0.0.1:56724/turnos [404 Not Found, 306B, 5ms]
+  √  Estado 404
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 20 Evitar doble reserva
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 343B, 4ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 21 Especialidad incompatible
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 331B, 5ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 22 Horario fuera de agenda
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 384B, 4ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 23 Actualizar turno
+  PUT http://127.0.0.1:56724/turnos/d5fb33b1-30df-4552-9ac9-695f9eb3e611 [200 OK, 434B, 4ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  Actualización y fecha normalizada
+
+→ 24 Proteger médico con turnos
+  DELETE http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [400 Bad Request, 342B, 6ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 25 Proteger especialidad con turnos
+  PUT http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [400 Bad Request, 365B, 3ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 26 Desactivar disponibilidad
+  PUT http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [200 OK, 344B, 3ms]
+  √  Estado 200
+  √  Contrato JSON
+
+→ 27 Filtrar disponibilidad false
+  GET http://127.0.0.1:56724/medicos?especialidad=Pediatria&disponible=false [200 OK, 346B, 5ms]
+  √  Estado 200
+  √  Contrato JSON
+  √  False no se convierte en true
+
+→ 28 Rechazar médico no disponible
+  POST http://127.0.0.1:56724/turnos [400 Bad Request, 319B, 4ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 29 Eliminar turno
+  DELETE http://127.0.0.1:56724/turnos/d5fb33b1-30df-4552-9ac9-695f9eb3e611 [204 No Content, 111B, 4ms]
+  √  Estado 204
+  √  Sin cuerpo
+
+→ 30 Turno eliminado no existe
+  GET http://127.0.0.1:56724/turnos/d5fb33b1-30df-4552-9ac9-695f9eb3e611 [404 Not Found, 309B, 3ms]
+  √  Estado 404
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 31 Eliminar médico
+  DELETE http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [204 No Content, 111B, 3ms]
+  √  Estado 204
+  √  Sin cuerpo
+
+→ 32 Médico eliminado no existe
+  GET http://127.0.0.1:56724/medicos/241ac3e4-d506-4932-931b-6cdacc1a0eba [404 Not Found, 306B, 3ms]
+  √  Estado 404
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 33 Ruta inexistente
+  GET http://127.0.0.1:56724/ruta-inexistente [404 Not Found, 302B, 3ms]
+  √  Estado 404
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 34 Query desconocida
+  GET http://127.0.0.1:56724/turnos?desconocido=1 [400 Bad Request, 417B, 3ms]
+  √  Estado 400
+  √  Contrato JSON
+  √  Estado del error consistente
+  √  Código de error
+
+→ 35 Bienvenida
+  GET http://127.0.0.1:56724/ [200 OK, 279B, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Bienvenida
+
+→ 36 Listar especialidades
+  GET http://127.0.0.1:56724/especialidades [200 OK, 2.62kB, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Catálogo heredado
+
+→ 37 Consultar especialidad
+  GET http://127.0.0.1:56724/especialidades/00503f94-1916-45ba-92eb-91a8f8a18359 [200 OK, 324B, 2ms]
+  √  Estado 200
+  √  Respuesta JSON
+
+→ 38 Filtrar especialidades
+  GET http://127.0.0.1:56724/especialidades?nombre=Pediatria&activa=true [200 OK, 320B, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Filtro sin tildes
+
+→ 39 Crear especialidad
+  POST http://127.0.0.1:56724/especialidades [201 Created, 404B, 4ms]
+  √  Estado 201
+  √  Respuesta JSON
+
+→ 40 Especialidad duplicada
+  POST http://127.0.0.1:56724/especialidades [400 Bad Request, 332B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 41 Especialidad incompleta
+  POST http://127.0.0.1:56724/especialidades [400 Bad Request, 436B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 42 Especialidad con tipo inválido
+  POST http://127.0.0.1:56724/especialidades [400 Bad Request, 433B, 5ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 43 ID de especialidad inválido
+  GET http://127.0.0.1:56724/especialidades/123 [400 Bad Request, 395B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 44 Especialidad inexistente
+  GET http://127.0.0.1:56724/especialidades/11111111-1111-4111-8111-111111111111 [404 Not Found, 314B, 3ms]
+  √  Estado 404
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 45 Actualizar especialidad
+  PUT http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [200 OK, 333B, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+
+→ 46 Listar profesionales
+  GET http://127.0.0.1:56724/profesionales [200 OK, 4.04kB, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Profesionales originales
+
+→ 47 Filtrar profesionales
+  GET http://127.0.0.1:56724/profesionales?especialidad=Pediatria&disponible=true [200 OK, 460B, 4ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Filtros
+
+→ 48 Crear profesional
+  POST http://127.0.0.1:56724/profesionales [201 Created, 421B, 3ms]
+  √  Estado 201
+  √  Respuesta JSON
+  √  Location correcto
+
+→ 49 Consultar profesional
+  GET http://127.0.0.1:56724/profesionales/5a07b006-9c50-47e5-a5b4-02b28c7ac954 [200 OK, 353B, 4ms]
+  √  Estado 200
+  √  Respuesta JSON
+
+→ 50 Compatibilidad con médicos
+  GET http://127.0.0.1:56724/medicos/5a07b006-9c50-47e5-a5b4-02b28c7ac954 [200 OK, 353B, 2ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Misma entidad
+
+→ 51 Profesional incompleto
+  POST http://127.0.0.1:56724/profesionales [400 Bad Request, 551B, 4ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 52 Profesional tipo incorrecto
+  POST http://127.0.0.1:56724/profesionales [400 Bad Request, 437B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 53 Profesional ID inválido
+  GET http://127.0.0.1:56724/profesionales/abc [400 Bad Request, 395B, 4ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 54 Profesional inexistente
+  GET http://127.0.0.1:56724/profesionales/11111111-1111-4111-8111-111111111111 [404 Not Found, 306B, 3ms]
+  √  Estado 404
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 55 Actualizar profesional
+  PUT http://127.0.0.1:56724/profesionales/5a07b006-9c50-47e5-a5b4-02b28c7ac954 [200 OK, 362B, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+
+→ 56 Rechazar baja de especialidad vinculada
+  DELETE http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [400 Bad Request, 342B, 4ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 57 Rechazar renombrado de especialidad vinculada
+  PUT http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [400 Bad Request, 342B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 58 Rechazar desactivación vinculada
+  PUT http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [400 Bad Request, 342B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 59 Error no muta datos
+  GET http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [200 OK, 333B, 3ms]
+  √  Estado 200
+  √  Respuesta JSON
+  √  Nombre intacto
+  √  Activa intacta
+
+→ 60 Eliminar profesional
+  DELETE http://127.0.0.1:56724/profesionales/5a07b006-9c50-47e5-a5b4-02b28c7ac954 [204 No Content, 111B, 3ms]
+  √  Estado 204
+  √  Sin cuerpo
+
+→ 61 Profesional eliminado
+  GET http://127.0.0.1:56724/profesionales/5a07b006-9c50-47e5-a5b4-02b28c7ac954 [404 Not Found, 306B, 4ms]
+  √  Estado 404
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 62 Eliminar especialidad
+  DELETE http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [204 No Content, 111B, 3ms]
+  √  Estado 204
+  √  Sin cuerpo
+
+→ 63 Especialidad eliminada
+  GET http://127.0.0.1:56724/especialidades/c5281d28-5922-469b-982c-3af86f0a2ecb [404 Not Found, 314B, 2ms]
+  √  Estado 404
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 64 Query de especialidad repetida
+  GET http://127.0.0.1:56724/especialidades?activa=true&activa=false [400 Bad Request, 436B, 3ms]
+  √  Estado 400
+  √  Respuesta JSON
+  √  Error uniforme
+
+→ 65 Ruta desconocida controller general
+  GET http://127.0.0.1:56724/ruta-inexistente-api3 [404 Not Found, 302B, 2ms]
+  √  Estado 404
+  √  Respuesta JSON
+  √  Error uniforme
+  √  Código de ruta
+
+→ 66 API4 registrar paciente
+  POST http://127.0.0.1:56724/pacientes [201 Created, 416B, 4ms]
+  √  Estado 201
+  √  Paciente con UUID y datos
+
+→ 67 API4 DNI duplicado
+  POST http://127.0.0.1:56724/pacientes [409 Conflict, 317B, 3ms]
+  √  Estado 409
+  √  Conflicto
+
+→ 68 API4 paciente sin contacto
+  POST http://127.0.0.1:56724/pacientes [400 Bad Request, 402B, 3ms]
+  √  Estado 400
+  √  Validación uniforme
+
+→ 69 API4 crear médico para reserva
+  POST http://127.0.0.1:56724/medicos [201 Created, 396B, 3ms]
+  √  Estado 201
+
+→ 70 API4 asignar turno al paciente
+  POST http://127.0.0.1:56724/pacientes/1b76ea4c-d7c0-48f2-9033-458433d6946c/turnos [201 Created, 538B, 3ms]
+  √  Estado 201
+  √  Relación y datos derivados
+
+→ 71 API4 consultar turno creado
+  GET http://127.0.0.1:56724/turnos/d4087e82-f722-4ada-bb05-2180df75cea2 [200 OK, 424B, 2ms]
+  √  Estado 200
+  √  Turno guardado en memoria
+
+→ 72 API4 rechazar superposición
+  POST http://127.0.0.1:56724/pacientes/1b76ea4c-d7c0-48f2-9033-458433d6946c/turnos [400 Bad Request, 343B, 3ms]
+  √  Estado 400
+  √  Agenda ocupada
+
+→ 73 API4 paciente inexistente
+  POST http://127.0.0.1:56724/pacientes/00000000-0000-4000-8000-000000000000/turnos [404 Not Found, 308B, 4ms]
+  √  Estado 404
+  √  Paciente inexistente
+
+→ 74 API4 ID inválido
+  POST http://127.0.0.1:56724/pacientes/no-es-uuid/turnos [400 Bad Request, 395B, 3ms]
+  √  Estado 400
+
+→ 75 API4 DNI inválido
+  POST http://127.0.0.1:56724/pacientes [400 Bad Request, 423B, 3ms]
+  √  Estado 400
+
+→ 76 API4 nacimiento futuro
+  POST http://127.0.0.1:56724/pacientes [400 Bad Request, 407B, 3ms]
+  √  Estado 400
+
+→ 77 API4 limpiar turno de prueba
+  DELETE http://127.0.0.1:56724/turnos/d4087e82-f722-4ada-bb05-2180df75cea2 [204 No Content, 111B, 3ms]
+  √  Estado 204
+
+→ 78 API4 limpiar médico de prueba
+  DELETE http://127.0.0.1:56724/medicos/c65629be-614c-4ef4-8885-b02bd12565e9 [204 No Content, 111B, 2ms]
+  √  Estado 204
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│                         │         executed │           failed │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              iterations │                1 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│                requests │               78 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│            test-scripts │              156 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│      prerequest-scripts │               78 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              assertions │              232 │                0 │
+├─────────────────────────┴──────────────────┴──────────────────┤
+│ total run duration: 8.1s                                      │
+├───────────────────────────────────────────────────────────────┤
+│ total data received: 21.25kB (approx)                         │
+├───────────────────────────────────────────────────────────────┤
+│ average response time: 5ms [min: 2ms, max: 109ms, s.d.: 11ms] │
+└───────────────────────────────────────────────────────────────┘

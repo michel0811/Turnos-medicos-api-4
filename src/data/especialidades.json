@@ -1,0 +1,112 @@
+[
+  {
+    "especialidadId": "00503f94-1916-45ba-92eb-91a8f8a18359",
+    "nombreEspecialidad": "Clínica médica",
+    "activa": true
+  },
+  {
+    "especialidadId": "bb8e4214-237c-403f-8a62-a53eb57c5441",
+    "nombreEspecialidad": "Cardiología",
+    "activa": true
+  },
+  {
+    "especialidadId": "9170f9d7-5224-4848-ba35-860f3b44f224",
+    "nombreEspecialidad": "Dermatología",
+    "activa": true
+  },
+  {
+    "especialidadId": "ba4c9a9f-2eb5-4fae-8a76-e8b45972ff72",
+    "nombreEspecialidad": "Pediatría",
+    "activa": true
+  },
+  {
+    "especialidadId": "c7833c21-121d-43b7-9904-7fc1f4cecc07",
+    "nombreEspecialidad": "Ginecología",
+    "activa": true
+  },
+  {
+    "especialidadId": "07b086f8-4440-4cc8-98a5-fb71fe286df0",
+    "nombreEspecialidad": "Traumatología",
+    "activa": true
+  },
+  {
+    "especialidadId": "59dffe29-3dc0-41e7-8d93-aa66f1a48a48",
+    "nombreEspecialidad": "Neurología",
+    "activa": true
+  },
+  {
+    "especialidadId": "227e56ba-60f1-4dc9-8bf0-1bf894fcd1be",
+    "nombreEspecialidad": "Oftalmología",
+    "activa": true
+  },
+  {
+    "especialidadId": "855b49f5-7500-471d-ab0a-37ed8aa9b8ff",
+    "nombreEspecialidad": "Otorrinolaringología",
+    "activa": true
+  },
+  {
+    "especialidadId": "128ea173-d228-4352-ae34-a8a2f21430e0",
+    "nombreEspecialidad": "Urología",
+    "activa": true
+  },
+  {
+    "especialidadId": "058f8455-b3b5-49e7-abad-650e999b2407",
+    "nombreEspecialidad": "Endocrinología",
+    "activa": true
+  },
+  {
+    "especialidadId": "727747ef-767c-4d62-a453-be5e8ee436ab",
+    "nombreEspecialidad": "Gastroenterología",
+    "activa": true
+  },
+  {
+    "especialidadId": "1b1e2f6d-bf3d-4a87-bc4e-9ebc6eae658f",
+    "nombreEspecialidad": "Neumonología",
+    "activa": true
+  },
+  {
+    "especialidadId": "8739d1e6-e912-4ec7-b527-f2ba39fbda3c",
+    "nombreEspecialidad": "Reumatología",
+    "activa": true
+  },
+  {
+    "especialidadId": "263b10fe-64f2-46fb-9a68-aa383d9166d2",
+    "nombreEspecialidad": "Nefrología",
+    "activa": true
+  },
+  {
+    "especialidadId": "879a3216-c206-48f2-b93b-8324d5124bfd",
+    "nombreEspecialidad": "Hematología",
+    "activa": true
+  },
+  {
+    "especialidadId": "698c079d-2b70-44ae-88c5-65936b7669c2",
+    "nombreEspecialidad": "Infectología",
+    "activa": true
+  },
+  {
+    "especialidadId": "555f927e-2a76-49de-a691-83d81c6a935c",
+    "nombreEspecialidad": "Psiquiatría",
+    "activa": true
+  },
+  {
+    "especialidadId": "72420729-0a37-4359-b1e0-2c421dabbb7c",
+    "nombreEspecialidad": "Alergología",
+    "activa": true
+  },
+  {
+    "especialidadId": "6d37f2e5-9480-4c59-a8e2-50e9fcef6743",
+    "nombreEspecialidad": "Medicina familiar",
+    "activa": true
+  },
+  {
+    "especialidadId": "99999999-9999-4999-8999-000000000001",
+    "nombreEspecialidad": "Odontología",
+    "activa": true
+  },
+  {
+    "especialidadId": "99999999-9999-4999-8999-000000000002",
+    "nombreEspecialidad": "Nutrición",
+    "activa": true
+  }
+]

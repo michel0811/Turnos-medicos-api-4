@@ -1,0 +1,16 @@
+import { test, before, after } from 'node:test';
+import assert from 'node:assert/strict';
+import { once } from 'node:events';
+import express from 'express';
+import { app } from '../dist/app.js';
+import { loadData, doctors, specialties } from '../dist/models/store.js';
+import { errorHandler } from '../dist/middlewares/error.middleware.js';
+let server, base;
+before(async()=>{await loadData();server=app.listen(0,'127.0.0.1');await once(server,'listening');base=`http://127.0.0.1:${server.address().port}`;});
+after(()=>new Promise(resolve=>server.close(resolve)));
+test('Carga fiel de los catálogos originales',()=>{assert.equal(doctors.length,30);assert.equal(specialties.length,22);assert.equal(doctors[0].medicoId,'bcd2b423-9836-4e02-889f-d2f6f94c937f');});
+test('JSON roto devuelve error uniforme',async()=>{const r=await fetch(base+'/medicos',{method:'POST',headers:{'Content-Type':'application/json'},body:'{broken'});assert.equal(r.status,400);assert.equal((await r.json()).code,'INVALID_JSON');});
+test('Query repetida no omite validación',async()=>{const r=await fetch(base+'/medicos?disponible=true&disponible=false');assert.equal(r.status,400);});
+test('Fecha imposible en filtro',async()=>{const r=await fetch(base+'/turnos?fecha=2026-02-30');assert.equal(r.status,400);});
+test('Cuerpo demasiado grande mantiene contrato',async()=>{const r=await fetch(base+'/medicos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:'a'.repeat(110000)})});assert.equal(r.status,400);assert.equal((await r.json()).code,'BODY_TOO_LARGE');});
+test('Error interno 500 no filtra información',async()=>{const a=express();a.get('/',()=>{throw Error('detalle-privado');});a.use(errorHandler);const s=a.listen(0,'127.0.0.1');await once(s,'listening');try{const r=await fetch(`http://127.0.0.1:${s.address().port}`);assert.equal(r.status,500);assert.deepEqual(await r.json(),{status:500,message:'Error interno del servidor',code:'INTERNAL_ERROR',details:[]});}finally{await new Promise(resolve=>s.close(resolve));}});
